@@ -4,7 +4,7 @@ import android.content.Context
 import com.google.gson.GsonBuilder
 import com.rishi.basesetup.app.App
 import com.rishi.basesetup.data.AppApiClientService
-import com.rishi.util.Constant
+import com.rishi.basesetup.util.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

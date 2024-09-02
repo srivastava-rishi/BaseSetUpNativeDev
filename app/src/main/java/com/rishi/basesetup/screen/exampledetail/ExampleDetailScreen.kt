@@ -6,18 +6,25 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -25,21 +32,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+//import coil.compose.AsyncImage
+//import coil.request.ImageRequest
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.rishi.basesetup.R
 import com.rishi.basesetup.navigation.actions.ExampleDetailScreenActions
 import com.rishi.basesetup.ui.theme.paragraph
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -56,8 +67,9 @@ fun ExampleDetailScreen(
     val context = LocalContext.current
 
     SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Color.Black
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = true
         )
     }
 
@@ -201,6 +213,52 @@ fun ExampleDetail(
             style = MaterialTheme.typography.paragraph,
             color = Color(0xFF000000),
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PothosBottomSheet(
+    modalBottomSheetState: SheetState,
+    scrimColor: Color = Color.Black.copy(alpha = 0.5F),
+    sheetShape: Shape = MaterialTheme.shapes.large,
+    windowInsets: WindowInsets = BottomSheetDefaults.windowInsets,
+    content: @Composable (() -> Unit) -> Unit,
+) {
+    val coroutineScope = rememberCoroutineScope()
+
+    if (modalBottomSheetState.currentValue != SheetValue.Hidden) {
+        ModalBottomSheet(
+            tonalElevation = 30.dp,
+            scrimColor = scrimColor,
+            containerColor = Color.Transparent,
+            sheetState = modalBottomSheetState,
+            windowInsets = windowInsets,
+            dragHandle = {},
+            shape = sheetShape,
+            content = {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .navigationBarsPadding()
+                ) {
+                    content {
+                        hideBottomSheet(coroutineScope, modalBottomSheetState)
+                    }
+                }
+            },
+            onDismissRequest = {}
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+fun hideBottomSheet(
+    coroutineScope: CoroutineScope,
+    modalBottomSheetState: SheetState,
+) {
+    coroutineScope.launch {
+        modalBottomSheetState.hide() // will trigger the LaunchedEffect
     }
 }
 

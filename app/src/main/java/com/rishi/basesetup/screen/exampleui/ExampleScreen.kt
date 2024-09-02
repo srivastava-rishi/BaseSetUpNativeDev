@@ -7,14 +7,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -23,10 +26,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,7 +47,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.rishi.basesetup.R
 import com.rishi.basesetup.data.models.ArticleData
 import com.rishi.basesetup.navigation.actions.ExampleScreenActions
+import com.rishi.basesetup.screen.exampledetail.PothosBottomSheet
 import com.rishi.basesetup.ui.theme.paragraph
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,6 +63,8 @@ fun ExampleScreen(
 
     val systemUiController = rememberSystemUiController()
     val context = LocalContext.current
+    val testBottomSheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val coroutineScope = rememberCoroutineScope()
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -82,7 +91,34 @@ fun ExampleScreen(
         ExampleScreenContent(
             modifier = Modifier.padding(innerPadding),
             onEvent = onEvent,
-            uiState = viewModel.uiState
+            uiState = viewModel.uiState,
+            openSheet = {
+                coroutineScope.launch {
+                    testBottomSheet.show()
+                }
+            }
+        )
+    }
+
+    PothosBottomSheet(
+        modalBottomSheetState = testBottomSheet,
+        windowInsets = BottomSheetDefaults.windowInsets.only(WindowInsetsSides.Bottom),
+        sheetShape = RoundedCornerShape(
+            topStart = 24.dp, topEnd = 24.dp,
+        )
+    ) {
+        Text(
+            text = "e3dwrfetgbrefrwervd",
+            style = MaterialTheme.typography.paragraph,
+            color = Color(0xFF181818),
+            maxLines = 2
+        )
+        Spacer(modifier = Modifier.size(16.dp))
+        Text(
+            text = "fvejndgklnkefrvkvkrfkmkmfvrkmmffkmmkmkfvmvkmvkmvkmkmkmjnfdjkvjkjdfsvdfnjvdfvdv ndv jndvjkndavjknadvj ndjkvdeajvejvevekjnvdfjknvdkjnvjkdnafvjkdv jnkddvjkkjdfvdjnv njdvjndvjndfkvdfjkndfjknvdfjknvjkdjndfjnfdjnfdjkdfvjknjfdjkfjdjfdnjnfdjnfjnfdjnfjnfjdnfdjjfdnfjndjnfdjfndjvvfdjnkvfjdnvjndjvfjdfjkn",
+            style = MaterialTheme.typography.labelSmall,
+            color = Color(0xFF181818),
+            maxLines = 3
         )
     }
 
@@ -100,7 +136,8 @@ fun ExampleScreen(
 private fun ExampleScreenContent(
     modifier: Modifier,
     uiState: ExampleScreenUiState,
-    onEvent: (ExampleScreenUIEvent) -> Unit
+    onEvent: (ExampleScreenUIEvent) -> Unit,
+    openSheet: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -116,7 +153,8 @@ private fun ExampleScreenContent(
                     val lastItem = index == exampleList.size
                     if (exampleList.isNotEmpty()) {
                         ExampleItem(it, lastItem) {
-                            onEvent(ExampleScreenUIEvent.ExampleDetailScreen(it))
+//                            onEvent(ExampleScreenUIEvent.ExampleDetailScreen(it))
+                              openSheet()
                         }
                     }
                 }
@@ -222,5 +260,5 @@ private fun handelSideEffects(
 @Composable
 fun ExamplePreview() {
     val uiState = ExampleScreenUiState()
-    ExampleScreenContent(modifier = Modifier, uiState = uiState, {})
+    ExampleScreenContent(modifier = Modifier, uiState = uiState, {},{})
 }

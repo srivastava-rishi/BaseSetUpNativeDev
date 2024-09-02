@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.rishi.basesetup.data.models.ArticleData
 import com.rishi.basesetup.domain.ExampleUseCase
 import com.rishi.basesetup.navigation.AppArgs
-import com.rishi.util.Constant
+import com.rishi.basesetup.util.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch

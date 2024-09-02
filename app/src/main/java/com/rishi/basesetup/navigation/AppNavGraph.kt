@@ -11,6 +11,7 @@ import com.rishi.basesetup.screen.exampledetail.ExampleDetail
 import com.rishi.basesetup.screen.exampledetail.ExampleDetailScreen
 import com.rishi.basesetup.screen.exampleui.ExampleScreen
 import com.rishi.basesetup.screen.test.TestScreen
+import com.rishi.basesetup.utils.animatedComposable
 
 @Composable
 fun AppNavGraph(
@@ -25,7 +26,7 @@ fun AppNavGraph(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        composable(AppScreen.ExampleScreen.route) {
+        animatedComposable(AppScreen.ExampleScreen.route) {
             ExampleScreen(
                 onAction = navActions::navigateFromExampleScreen
             )
@@ -36,7 +37,7 @@ fun AppNavGraph(
             )
         }
 
-        composable(
+        animatedComposable(
             route = AppScreen.ExampleDetailsScreen.route,
             arguments = listOf(
                 navArgument(AppArgs.ARG_NEWS_ID) { type = NavType.StringType }

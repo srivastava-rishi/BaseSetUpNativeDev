@@ -84,7 +84,6 @@ dependencies {
     // work-work
     implementation(libs.work.runtime)
     // coil library
-    implementation("io.coil-kt:coil-compose:2.6.0")
     // system bar color change
     implementation(libs.accompanist.systemuicontroller)
 }
