@@ -4,6 +4,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 
 fun enterTransition() =
@@ -31,3 +32,11 @@ fun popExitTransition() =
         targetOffsetX = { 300 },
         animationSpec = tween(300)
     ) + fadeOut(animationSpec = tween(300))
+
+fun enterTransition2() =
+    slideInVertically(
+        initialOffsetY = {
+            it
+        },
+        animationSpec = tween(300)
+    ) + fadeIn(animationSpec = tween(300))

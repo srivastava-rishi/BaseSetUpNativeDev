@@ -8,6 +8,7 @@ import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.rishi.basesetup.navigation.animation.enterTransition
+import com.rishi.basesetup.navigation.animation.enterTransition2
 import com.rishi.basesetup.navigation.animation.exitTransition
 import com.rishi.basesetup.navigation.animation.popEnterTransition
 import com.rishi.basesetup.navigation.animation.popExitTransition
@@ -23,7 +24,7 @@ fun NavGraphBuilder.animatedComposable(
         arguments = arguments,
         deepLinks = deepLinks,
         content = content,
-        enterTransition = { enterTransition() },
+        enterTransition = { enterTransition2() },
         exitTransition = { exitTransition() },
         popExitTransition = { popExitTransition() },
         popEnterTransition = { popEnterTransition() },

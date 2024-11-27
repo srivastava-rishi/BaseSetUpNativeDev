@@ -16,7 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
+import com.rishi.basesetup.animation.PaymentAnimation
 import com.rishi.basesetup.navigation.AppNavGraph
+import com.rishi.basesetup.navigation.AppNavGraph2
 import com.rishi.basesetup.navigation.AppNavigationActions
 import com.rishi.basesetup.ui.theme.BaseSetupTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,14 +36,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DemoApp(onNavigationEnd = {
-                        finish()
+                    NavGraph(onNavigationEnd = {
+
                     })
                 }
             }
         }
     }
+
+    private fun hen() {
+        Thread.sleep(12 * 1000)
+    }
 }
+
+// medicine , cockroach killer
 
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
@@ -59,6 +67,29 @@ fun DemoApp(
         sheetShape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
     ) {
         AppNavGraph(
+            navController = navController,
+            navActions = navActions
+        )
+    }
+}
+
+
+@OptIn(ExperimentalMaterialNavigationApi::class)
+@Composable
+fun NavGraph(
+    onNavigationEnd: () -> Unit
+) {
+    val bottomSheetNavigator = rememberBottomSheetNavigator()
+    val navController = rememberNavController()
+    val navActions: AppNavigationActions = remember(navController) {
+        AppNavigationActions(navController, onNavigationEnd)
+    }
+    ModalBottomSheetLayout(
+        bottomSheetNavigator = bottomSheetNavigator,
+        modifier = Modifier.fillMaxSize(),
+        sheetShape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+    ) {
+        AppNavGraph2(
             navController = navController,
             navActions = navActions
         )

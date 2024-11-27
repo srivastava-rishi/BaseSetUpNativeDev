@@ -43,8 +43,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-//import coil.compose.AsyncImage
-//import coil.request.ImageRequest
+import coil3.compose.AsyncImage
+import com.android.volley.toolbox.ImageRequest
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.rishi.basesetup.R
 import com.rishi.basesetup.navigation.actions.ExampleDetailScreenActions
@@ -102,20 +102,19 @@ fun ExampleDetailContent(
     Box(
         modifier = Modifier
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(data?.image.orEmpty())
-                .error(R.drawable.pic)
-                .placeholder(R.drawable.pic)
-                .crossfade(true)
-                .build(),
-            contentDescription = "News Image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(190.dp)
-                .background(Color.Blue)
-        )
+//        AsyncImage(
+//            model = ImageRequest.Builder(LocalContext.current)
+//                .data(data?.image.orEmpty())
+//                .placeholder(R.drawable.pic)
+//                .crossfade(true)
+//                .build(),
+//            contentDescription = "News Image",
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(190.dp)
+//                .background(Color.Blue)
+//        )
         Column {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -177,20 +176,20 @@ fun ExampleDetail(
                 .padding(top = 24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(data?.userData?.photoUrl.orEmpty())
-                    .error(R.drawable.pic)
-                    .placeholder(R.drawable.pic)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "Author Photo",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .background(Color.Blue)
-            )
+//            AsyncImage(
+//                model = ImageRequest.Builder(LocalContext.current)
+//                    .data(data?.userData?.photoUrl.orEmpty())
+//                    .error(R.drawable.pic)
+//                    .placeholder(R.drawable.pic)
+//                    .crossfade(true)
+//                    .build(),
+//                contentDescription = "Author Photo",
+//                contentScale = ContentScale.Crop,
+//                modifier = Modifier
+//                    .size(40.dp)
+//                    .clip(CircleShape)
+//                    .background(Color.Blue)
+//            )
             Spacer(modifier = Modifier.size(8.dp))
 
             Column {

@@ -1,9 +1,11 @@
 package com.rishi.basesetup.navigation
 
 import androidx.navigation.NavController
+import androidx.navigation.navOptions
 import com.rishi.basesetup.navigation.AppArgs.ARG_NEWS_ID
 import com.rishi.basesetup.navigation.actions.ExampleDetailScreenActions
 import com.rishi.basesetup.navigation.actions.ExampleScreenActions
+import com.rishi.basesetup.navigation.actions.PaymentScreenActions
 import com.rishi.basesetup.navigation.actions.TestScreenActions
 import com.rishi.basesetup.utils.withArg
 
@@ -36,6 +38,21 @@ class AppNavigationActions(
                     AppScreen.ExampleDetailsScreen.name
                         .withArg(ARG_NEWS_ID, actions.newsId)
                 )
+            }
+        }
+    }
+
+    fun navigateFrommPaymentScreen(actions: PaymentScreenActions) {
+        when (actions) {
+            PaymentScreenActions.OpenSuccessScreen -> {
+//                val navOptions = navOptions {
+//                    launchSingleTop = true
+//                }
+                navController.navigate(AppScreen.SuccessPaymentScreen.route)
+            }
+
+            PaymentScreenActions.OpenFailurecreen -> {
+                navController.navigate(AppScreen.FailurePaymentScreen.route)
             }
         }
     }

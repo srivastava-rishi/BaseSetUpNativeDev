@@ -7,7 +7,7 @@ package com.rishi.basesetup.navigation.actions
 
 sealed class ScreenActions
 
-sealed class ExampleScreenActions : ScreenActions() {
+sealed class ExampleScreenActions{
     data object OnHelp : ExampleScreenActions()
     data object OnBack : ExampleScreenActions()
     data class OpenExampleDetailScreen(
@@ -21,6 +21,11 @@ sealed class ExampleDetailScreenActions : ScreenActions() {
 
 sealed class TestScreenActions : ScreenActions() {
     data object OpenExampleScreen : TestScreenActions()
+}
+
+sealed class PaymentScreenActions : ScreenActions() {
+    data object OpenSuccessScreen: PaymentScreenActions()
+    data object OpenFailurecreen: PaymentScreenActions()
 }
 
 

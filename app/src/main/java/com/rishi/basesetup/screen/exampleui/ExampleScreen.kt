@@ -41,8 +41,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+//import coil.compose.AsyncImage
+//import coil.request.ImageRequest
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.rishi.basesetup.R
 import com.rishi.basesetup.data.models.ArticleData
@@ -60,7 +60,6 @@ fun ExampleScreen(
     val onEvent = remember(key1 = viewModel) {
         return@remember viewModel::onEvent
     }
-
     val systemUiController = rememberSystemUiController()
     val context = LocalContext.current
     val testBottomSheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -154,7 +153,7 @@ private fun ExampleScreenContent(
                     if (exampleList.isNotEmpty()) {
                         ExampleItem(it, lastItem) {
 //                            onEvent(ExampleScreenUIEvent.ExampleDetailScreen(it))
-                              openSheet()
+                            openSheet()
                         }
                     }
                 }
@@ -182,22 +181,22 @@ fun ExampleItem(
                 .padding(start = 24.dp, end = 24.dp, top = 8.dp)
         )
         // Using Coil library to load an image from a URL into our composable
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(data = item.url)
-                .error(R.drawable.pic)
-                .placeholder(R.drawable.pic)
-                .crossfade(true)
-                .build(),
-            contentDescription = "bankIcon",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .fillMaxWidth()
-                .height(200.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color.Blue)
-        )
+//        AsyncImage(
+//            model = ImageRequest.Builder(LocalContext.current)
+//                .data(data = item.url)
+//                .error(R.drawable.pic)
+//                .placeholder(R.drawable.pic)
+//                .crossfade(true)
+//                .build(),
+//            contentDescription = "bankIcon",
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier
+//                .padding(top = 16.dp)
+//                .fillMaxWidth()
+//                .height(200.dp)
+//                .clip(RoundedCornerShape(12.dp))
+//                .background(Color.Blue)
+//        )
 
         Spacer(modifier = Modifier.size(16.dp))
         Text(
@@ -256,9 +255,9 @@ private fun handelSideEffects(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun ExamplePreview() {
     val uiState = ExampleScreenUiState()
-    ExampleScreenContent(modifier = Modifier, uiState = uiState, {},{})
+    ExampleScreenContent(modifier = Modifier, uiState = uiState, {}, {})
 }
