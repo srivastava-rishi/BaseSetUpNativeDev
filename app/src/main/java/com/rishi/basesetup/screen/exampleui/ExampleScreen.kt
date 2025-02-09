@@ -113,12 +113,12 @@ fun ExampleScreen(
             maxLines = 2
         )
         Spacer(modifier = Modifier.size(16.dp))
-        Text(
-            text = "fvejndgklnkefrvkvkrfkmkmfvrkmmffkmmkmkfvmvkmvkmvkmkmkmjnfdjkvjkjdfsvdfnjvdfvdv ndv jndvjkndavjknadvj ndjkvdeajvejvevekjnvdfjknvdkjnvjkdnafvjkdv jnkddvjkkjdfvdjnv njdvjndvjndfkvdfjkndfjknvdfjknvjkdjndfjnfdjnfdjkdfvjknjfdjkfjdjfdnjnfdjnfjnfdjnfjnfjdnfdjjfdnfjndjnfdjfndjvvfdjnkvfjdnvjndjvfjdfjkn",
-            style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF181818),
-            maxLines = 3
-        )
+//        Text(
+//            text = "fvejndgklnkefrvkvkrfkmkmfvrkmmffkmmkmkfvmvkmvkmvkmkmkmjnfdjkvjkjdfsvdfnjvdfvdv ndv jndvjkndavjknadvj ndjkvdeajvejvevekjnvdfjknvdkjnvjkdnafvjkdv jnkddvjkkjdfvdjnv njdvjndvjndfkvdfjkndfjknvdfjknvjkdjndfjnfdjnfdjkdfvjknjfdjkfjdjfdnjnfdjnfjnfdjnfjnfjdnfdjjfdnfjndjnfdjfndjvvfdjnkvfjdnvjndjvfjdfjkn",
+//            style = MaterialTheme.typography.labelSmall,
+//            color = Color(0xFF181818),
+//            maxLines = 3
+//        )
     }
 
     LaunchedEffect(key1 = viewModel.uiSideEffect) {
@@ -199,19 +199,19 @@ fun ExampleItem(
 //        )
 
         Spacer(modifier = Modifier.size(16.dp))
-        Text(
-            text = item.title.orEmpty(),
-            style = MaterialTheme.typography.paragraph,
-            color = Color(0xFF181818),
-            maxLines = 2
-        )
-        Spacer(modifier = Modifier.size(16.dp))
-        Text(
-            text = item.description.orEmpty(),
-            style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF181818),
-            maxLines = 3
-        )
+//        Text(
+//            text = item.title.orEmpty(),
+//            style = MaterialTheme.typography.paragraph,
+//            color = Color(0xFF181818),
+//            maxLines = 2
+//        )
+//        Spacer(modifier = Modifier.size(16.dp))
+//        Text(
+//            text = item.description.orEmpty(),
+//            style = MaterialTheme.typography.labelSmall,
+//            color = Color(0xFF181818),
+//            maxLines = 3
+//        )
         Spacer(modifier = Modifier.size(16.dp))
 
         Button(

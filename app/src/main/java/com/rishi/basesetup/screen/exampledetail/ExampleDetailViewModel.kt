@@ -7,6 +7,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rishi.basesetup.navigation.AppArgs
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ExampleDetailViewModel @Inject constructor(
@@ -26,6 +31,20 @@ class ExampleDetailViewModel @Inject constructor(
 
     init {
         fetch()
+    }
+
+    suspend fun hitApi(){
+        delay(1222)
+
+        CoroutineScope(Dispatchers.IO).launch {
+           launch {
+
+           }
+
+           val k = async {
+
+            }
+        }
     }
 
     private fun fetch() {
@@ -51,6 +70,10 @@ class ExampleDetailViewModel @Inject constructor(
             ExampleDetailScreenUIEvent.OnBack -> {
                 uiSideEffect = ExampleDetailScreenSideEffects.Back
             }
+
+            ExampleDetailScreenUIEvent.Update -> {
+                uiState = uiState.copy(doSomething = !uiState.doSomething)
+            }
         }
     }
 
@@ -62,11 +85,13 @@ class ExampleDetailViewModel @Inject constructor(
 
 data class ExampleDetailScreenUiState(
     val isLoading: Boolean = false,
-    val data: ExampleDetailItem? = null
+    val data: ExampleDetailItem? = null,
+    val doSomething: Boolean = false
 )
 
 sealed interface ExampleDetailScreenUIEvent {
     data object OnBack : ExampleDetailScreenUIEvent
+    data object Update : ExampleDetailScreenUIEvent
 }
 
 sealed interface ExampleDetailScreenSideEffects {

@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -48,6 +50,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.rishi.basesetup.R
 import com.rishi.basesetup.animation.common.PothosTheme
@@ -88,7 +94,7 @@ fun SuccessPayment() {
     }
 
     // Launch animations
-    LaunchedEffect(Unit) {
+    LaunchedEffect(false) {
         delay(2000)
         showMiddle = false
         launch {
@@ -388,5 +394,35 @@ fun FailurePayment() {
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    FailurePayment()
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter // Ensures everything aligns at the bottom center
+    ) {
+        val bottomLine by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.bottom_line))
+        val greenLight by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.green_light))
+
+        // Box to stack the animations properly
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1.28F) // Use a fixed aspect ratio for consistent results
+                .align(Alignment.BottomCenter) // Align at the bottom center
+        ) {
+            // Bottom line animation
+            LottieAnimation(
+                composition = bottomLine,
+                iterations = LottieConstants.IterateForever,
+                modifier = Modifier.fillMaxSize() // Fills the entire Box
+            )
+
+            // Green light animation on top
+            LottieAnimation(
+                composition = greenLight,
+                iterations = LottieConstants.IterateForever,
+                modifier = Modifier.fillMaxSize() // Fills the entire Box
+            )
+        }
+    }
+
+
 }

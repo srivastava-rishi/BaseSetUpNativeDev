@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -146,6 +147,8 @@ fun PaymentContent(
     val firstChipSize = remember { Animatable(30f) }
     val originalDistance = 173f
     val lottie1 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.speedline))
+    val lottie2 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.bottom_line))
+    val lottie3 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.green_light))
 
     val firstChipSecondTranslation = remember { Animatable(0f) }
     val secondChipSecondTranslation = remember { Animatable(0f) }
@@ -264,9 +267,7 @@ fun PaymentContent(
 
     Column(
         modifier = modifier
-            .padding(top = if (startAnimation) 0.dp else 24.dp)
             .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Parent Box to align both ripple-chip pairs initially
         Box(
@@ -279,7 +280,7 @@ fun PaymentContent(
                 GrowingCircle(
 //                    color = Color(0xFFFCE9E8)
                 ) {
-                    onAction(PaymentScreenActions.OpenSuccessScreen)
+//                    onAction(PaymentScreenActions.OpenSuccessScreen)
 //                    onA
                 }
             }
@@ -415,6 +416,53 @@ fun PaymentContent(
                 Text(text = "Reset")
             }
         }
+
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+
+            Box {
+                LottieAnimation(
+                    lottie3,
+                    iterations = LottieConstants.IterateForever,
+                    modifier = Modifier
+                        .fillMaxWidth()
+
+                )
+            }
+
+            Box {
+                LottieAnimation(
+                    lottie2,
+                    iterations = LottieConstants.IterateForever,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(
+                modifier = Modifier.align(Alignment.BottomCenter)
+            ) {
+                val lottie1 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.green_light))
+                val lottie2 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.bottom_line))
+                Box {
+                    LottieAnimation(
+                        lottie2,
+                        iterations = LottieConstants.IterateForever,
+                        modifier = Modifier.aspectRatio(1.8f)
+                    )
+                    LottieAnimation(
+                        lottie1,
+                        iterations = LottieConstants.IterateForever,
+                        modifier = Modifier.aspectRatio(1.28F)
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -494,30 +542,10 @@ fun SuccessCircle(
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-//    Column(
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        SuccessCircle()
-//    }
-
-
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .height(80.dp)
-                .fillMaxWidth()
-                .background(Color.Black)
-                .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "liobnrestdyfugihjobhjklhbvaSzdxfcgvhbjnkmlmjnhbgvfcdrxszeaZsxdfcgvhbjgvfcdxrszeazsxdcfvghbjnkm",
-                color = Color.White
-            )
-        }
+        PaymentAnimation({})
     }
+
 }

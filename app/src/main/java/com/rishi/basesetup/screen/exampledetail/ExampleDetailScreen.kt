@@ -35,7 +35,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
@@ -137,21 +136,21 @@ fun ExampleDetailContent(
                 }
             )
 
-            Text(
-                modifier = Modifier.padding(horizontal = 24.dp),
-                text = data?.time.orEmpty(),
-                style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFFFFFFFF),
-                maxLines = 3
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(
-                modifier = Modifier.padding(horizontal = 24.dp),
-                text = data?.headline.orEmpty(),
-                style = MaterialTheme.typography.paragraph,
-                color = Color(0xFFFFFFFF),
-                maxLines = 3
-            )
+//            Text(
+//                modifier = Modifier.padding(horizontal = 24.dp),
+//                text = data?.time.orEmpty(),
+//                style = MaterialTheme.typography.bodySmall,
+//                color = Color(0xFFFFFFFF),
+//                maxLines = 3
+//            )
+//            Spacer(modifier = Modifier.size(16.dp))
+//            Text(
+//                modifier = Modifier.padding(horizontal = 24.dp),
+//                text = data?.headline.orEmpty(),
+//                style = MaterialTheme.typography.paragraph,
+//                color = Color(0xFFFFFFFF),
+//                maxLines = 3
+//            )
             ExampleDetail(data)
         }
     }
@@ -207,11 +206,11 @@ fun ExampleDetail(
             }
         }
         Spacer(modifier = Modifier.size(24.dp))
-        Text(
-            text = data?.description.orEmpty(),
-            style = MaterialTheme.typography.paragraph,
-            color = Color(0xFF000000),
-        )
+//        Text(
+//            text = data?.description.orEmpty(),
+//            style = MaterialTheme.typography.paragraph,
+//            color = Color(0xFF000000),
+//        )
     }
 }
 

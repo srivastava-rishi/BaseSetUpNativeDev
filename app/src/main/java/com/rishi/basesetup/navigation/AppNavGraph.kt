@@ -12,7 +12,6 @@ import androidx.navigation.navArgument
 import com.rishi.basesetup.animation.PaymentAnimation
 import com.rishi.basesetup.screen.exampledetail.ExampleDetailScreen
 import com.rishi.basesetup.screen.exampleui.ExampleScreen
-import com.rishi.basesetup.screen.test.TestScreen
 import com.rishi.basesetup.utils.animatedComposable
 
 @Composable
@@ -34,9 +33,9 @@ fun AppNavGraph(
             )
         }
         composable(AppScreen.TestScreen.route) {
-            TestScreen(
-                onAction = navActions::navigateFromTestScreen
-            )
+//            TestScreen(
+//                onAction = navActions::navigateFromTestScreen
+//            )
         }
 
         animatedComposable(
